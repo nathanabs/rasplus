@@ -34,7 +34,7 @@ public class UserDto {
 
     private LocalDate dateSubscription = LocalDate.now();
 
-    private LocalDate dateExpiration;
+    private LocalDate dateExpiration = LocalDate.now();
 
     @NotNull
     private Long userTypeId;

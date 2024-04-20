@@ -19,7 +19,7 @@ public class UserPaymentInfo implements Serializable {
 
     @Id
     @Column(name = "user_payment_info_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column

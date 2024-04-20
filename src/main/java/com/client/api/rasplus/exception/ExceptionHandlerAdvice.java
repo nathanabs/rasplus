@@ -1,6 +1,7 @@
 package com.client.api.rasplus.exception;
 
 import com.client.api.rasplus.dto.error.ExceptionDto;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestControllerAdvice
@@ -22,6 +24,16 @@ public class ExceptionHandlerAdvice {
                 .message(exception.getMessage())
                 .httpStatus(NOT_FOUND)
                 .statusCode(NOT_FOUND.value())
+                .build();
+
+        return ResponseEntity.status(NOT_FOUND).body(response);
+    }
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ExceptionDto> DataIntegrityViolationException(DataIntegrityViolationException exception){
+        var response = ExceptionDto.builder()
+                .message(exception.getMostSpecificCause().getMessage())
+                .httpStatus(BAD_REQUEST)
+                .statusCode(BAD_REQUEST.value())
                 .build();
 
         return ResponseEntity.status(NOT_FOUND).body(response);
