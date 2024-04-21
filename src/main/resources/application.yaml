@@ -10,3 +10,6 @@ spring:
     password: senha123
   flyway:
     enabled: true
+
+springdoc:
+  packagesToScan: com.client.api.rasplus.controller
