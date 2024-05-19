@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "user_payment_info")
@@ -22,13 +23,13 @@ public class UserPaymentInfo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String card_number;
+    @Column(name = "card_number")
+    private String cardNumber;
 
     @Column(name = "card_expiration_month")
-    private Integer cardExpirationMonth;
+    private Long cardExpirationMonth;
     @Column(name = "card_expiration_year")
-    private Integer cardExpirationYear;
+    private Long cardExpirationYear;
 
     @Column(name = "card_security_code")
     private String cardSecurityCode;
@@ -40,7 +41,7 @@ public class UserPaymentInfo implements Serializable {
     private Long instalments;
 
     @Column(name = "dt_payment")
-    private Long datePayment;
+    private LocalDate datePayment;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id")

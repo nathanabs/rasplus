@@ -13,3 +13,10 @@ spring:
 
 springdoc:
   packagesToScan: com.client.api.rasplus.controller
+
+webservice:
+  raspay:
+    host: ${RASPAY_HOST:http://localhost:8081/ws-raspay}
+    customer: ${RASPAY_CUSTOMER:/v1/customer}
+    order: ${RASPAY_ORDER:/v1/order}
+    payment: ${RASPAY_PAYMENT:/v1/payment/credit-card}

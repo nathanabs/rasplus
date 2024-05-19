@@ -1,6 +1,8 @@
-package com.client.api.rasplus.exception;
+package com.client.api.rasplus.exception.handler;
 
 import com.client.api.rasplus.dto.error.ExceptionDto;
+import com.client.api.rasplus.exception.BusinessException;
+import com.client.api.rasplus.exception.NotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.*;
 
 @RestControllerAdvice
 public class ExceptionHandlerAdvice {
@@ -57,5 +58,16 @@ public class ExceptionHandlerAdvice {
                 .build();
 
         return ResponseEntity.status(NOT_FOUND).body(response);
+    }
+
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<ExceptionDto> notFoundException(BusinessException exception){
+        var response = ExceptionDto.builder()
+                .message(exception.getMessage())
+                .httpStatus(CONFLICT)
+                .statusCode(CONFLICT.value())
+                .build();
+
+        return ResponseEntity.status(CONFLICT).body(response);
     }
 }
