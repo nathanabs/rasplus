@@ -43,9 +43,10 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
         if (payment){
             var userPaymentInfo = UserPaymentInfoMapper.fromDtoToEntity(dto.getUserPaymentInfo(), user);
             paymentInfoRepository.save(userPaymentInfo);
+            return true;
         }
 
-        return null;
+        return false;
     }
 
     private User validaUsuario(Long userId) {
