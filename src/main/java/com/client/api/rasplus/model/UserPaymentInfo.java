@@ -38,12 +38,12 @@ public class UserPaymentInfo implements Serializable {
     private BigDecimal price;
 
     @Column
-    private Long instalments;
+    private Long installments;
 
     @Column(name = "dt_payment")
     private LocalDate datePayment;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_id")
+    @JoinColumn(name = "user_id")
     private User user;
 }
