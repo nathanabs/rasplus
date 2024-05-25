@@ -16,6 +16,7 @@ public class UserPaymentInfoMapper {
                 .price(dto.getPrice())
                 .datePayment(dto.getDatePayment())
                 .user(user)
+                .installments(dto.getInstalments())
                 .build();
     }
 }
